@@ -11,10 +11,8 @@ export default function Home() {
   var url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKeyInfo}`
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => {
-        return res.json()
-      })
+    fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=e51be47c088f44ffb873b4a0dd03deb2')
+      .then((res) => res.json())
       .then((info) => {
         setData(info.articles)
         console.log(info.articles);
