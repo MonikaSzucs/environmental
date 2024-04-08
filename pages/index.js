@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [data, setData] = useState();
-  const [isLoading, setLoading] = useState(true);
 
   var apiKeyInfo = process.env.NEXT_PUBLIC_API_KEY;
   var url = `https://newsapi.org/v2/everything?q=tesla&from=2024-03-15&sortBy=publishedAt&apiKey=${apiKeyInfo}`
@@ -16,13 +15,8 @@ export default function Home() {
       .then((info) => {
         setData(info)
         console.log(info);
-        setLoading(false);
-        //setLoading(false)
       })
   }, [])
-
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
 
   return (
     <>
