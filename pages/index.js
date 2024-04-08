@@ -27,7 +27,7 @@ export default function Home() {
     <>
       <main className={`${styles.main}`}>
         {
-          data?.map((i, index) => {
+          data.map((i, index) => {
             return(
               <div key={index}>
                 {i.author}
