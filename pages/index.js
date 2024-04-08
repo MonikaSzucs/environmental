@@ -4,17 +4,19 @@ import styles from "@/styles/Home.module.css";
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   var apiKeyInfo = process.env.NEXT_PUBLIC_API_KEY;
-  var url = `https://newsapi.org/v2/everything?q=tesla&from=2024-03-15&sortBy=publishedAt&apiKey=${apiKeyInfo}`
+  var url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKeyInfo}`
 
   useEffect(() => {
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json()
+      })
       .then((info) => {
-        setData(info)
-        console.log(info);
+        setData(info.articles)
+        console.log(info.articles);
       })
   }, [])
 
@@ -22,10 +24,10 @@ export default function Home() {
     <>
       <main className={`${styles.main}`}>
         {
-          data.articles.map((info, index) => {
+          data.map((i, index) => {
             return(
               <div key={index}>
-                {info.author}
+                {i.author}
               </div>
             )
           })
