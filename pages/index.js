@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   var apiKeyInfo = process.env.NEXT_PUBLIC_API_KEY;
   var url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKeyInfo}`
@@ -17,8 +18,12 @@ export default function Home() {
       .then((info) => {
         setData(info.articles)
         console.log(info.articles);
+        setLoading(false);
       })
   }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
 
   return (
     <>
